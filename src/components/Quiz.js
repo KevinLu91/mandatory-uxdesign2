@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import he from 'he';
+import AriaModal from 'react-aria-modal'
+import { Link } from 'react-router-dom';
 
 import Header from "./Header";
+import RenderForm from "./RenderForm"
+import DialogModal from './modals/DialogModal';
 
 const Container = styled.main`
   form{
@@ -18,12 +21,30 @@ const Container = styled.main`
     align-items: start;
     width: 60%;
   }
+
+  .dialog{
+    display: flex;
+    flex-direction: column;
+    background-color: lightgreen;
+    align-items: center;
+    justify-content: center;
+    width: 60vh;
+    height: 50vh;
+    border-radius: 5%;
+  }
+
+  .dialog_button_container{
+    display: flex;
+    justify-content:space-between;
+    width: 40%; 
+  }
+  
 `
 
 function Quiz(){
   const [questions, setQuestions] = useState([]);
-
-  let quizQuestions = [];
+  const [dialog, setDialog] = useState(false);
+  const [countScore, setCountScore] = useState(0);
 
   
   useEffect(() => {
@@ -37,57 +58,24 @@ function Quiz(){
      })
   }, [])
 
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
-
-  function renderData(questions) {
-    for(let i = 0; i < questions.length; i ++){
-      questions[i].incorrect_answers.push(questions[i].correct_answer);
-      quizQuestions.push(questions[i].incorrect_answers.slice(0, 4));
-    }
-
-    for(let i = 0; i < quizQuestions.length; i++){
-      for(let j = 0; j <quizQuestions.length; j++){
-        shuffle(quizQuestions[j])
-      }
-    }
-   
-    return(
-      <>
-        {questions.map((data, idx) =>(
-          <div className='question__Container' key={idx}>
-            <h3 tabindex='0'>Question {idx +1 }:</h3>
-            <h3 tabindex='0'>{he.decode(data.question)}</h3>
-            <ul>
-            {quizQuestions.map((x, i) =>(
-              (idx === i) ?
-               x.map((list) =>(
-                 <li>
-                 <input type='radio' name={idx} />
-                 <label>{he.decode(list)}</label>
-                 </li>
-               )) 
-               : null
-            ))}
-            </ul>
-          </div>
-        ))}
-      </>
-    )
-  }
-
+ 
   return(
     <>
       <Header />
       <Container>
-        
-        <form>   
-          {renderData(questions)}
-          <button>Submit</button>  
-        </form>
-
-  
+        <RenderForm 
+          questions={questions}
+          setDialog={setDialog}
+          dialog={dialog}
+          countScore={countScore}
+          setCountScore={setCountScore}
+        />
+        <DialogModal 
+        countScore={countScore} 
+        dialog={dialog}
+        setDialog={setDialog}
+        setQuestions={setQuestions}
+        />
       </Container>
     </>
   )

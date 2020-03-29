@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 import styled from 'styled-components'
-import { Redirect } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import Header from "./Header";
+import Header from './Header';
 
 const Container = styled.main`
   height: 400px;
@@ -13,28 +13,27 @@ const Container = styled.main`
 
   button{
     cursor: pointer;
+    border: none;
+    height: 36px;
     width: 100px;
+    border-radius: 4px;
+    background-color: #713D6E;
+    color: #ffffff;
+    outline-color: red;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `
 
 function Main(){
-  const [gameState, setGameState] = useState(false);
-
-  function handleGame() {
-    setGameState(!gameState);
-    console.log(gameState)
-  }
-
-  if(gameState){
-    return <Redirect to='/quiz' />
-  }
   
+
   return(
     <>
       <Header />
       <Container>
         <h2>Trivia</h2>
-        <button onClick={handleGame}>Start Quiz!</button>
+        <Link to='quiz'><button>Start Quiz!</button></Link>
       </Container>
     </>
   )

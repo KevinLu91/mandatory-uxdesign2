@@ -45,13 +45,13 @@ function Header() {
 
   return(
     <Container> 
-      <button className='menuBtn' onClick={handleSidebarModal}>
+      <button aria-label='Open menu' className='menuBtn' onClick={handleSidebarModal}>
         <Menu aria-hidden='true' fontSize="large" style={{ color: '#ffffff', backgroundColor: '#713D6E' }}/>
       </button>
       <div className='titleContainer'>
         <h1>{handleTitle(title, path)}</h1>
       </div>
-      <HamburgerModal sidebarOpen={sidebarOpen} onHandleSidebarModal={handleSidebarModal}/>
+      {sidebarOpen ? <HamburgerModal sidebarOpen={sidebarOpen} onHandleSidebarModal={handleSidebarModal}/>: null}
     </Container>
   )
 }

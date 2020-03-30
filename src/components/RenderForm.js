@@ -32,10 +32,12 @@ function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
   const [value, setValue] = useState([]);
   const [answers, setAnswers] = useState([]);
   
-  let quizQuestions = [];
   let count = 0;
+  
 
   useEffect(() =>{
+    let quizQuestions = [];
+
     for(let i = 0; i < questions.length; i ++){
       questions[i].incorrect_answers.push(questions[i].correct_answer);
       quizQuestions.push(questions[i].incorrect_answers.slice(0, 4));
@@ -46,6 +48,7 @@ function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
     setAnswers(quizQuestions);
   }, [questions])
 
+ 
   function onChange(e){
     setValue({...value, ...{[e.target.name]:e.target.value}});
   }
@@ -69,22 +72,25 @@ function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
  
   return(
     <Container>
-      {questions.length < 1 ?<div className='LoadingContainer'><Loader type="Grid" color="#713D6E" height={100} width={100} /></div> :
+      {questions.length < 1 ?<div className='LoadingContainer'><Loader aria-label='loading' type="Grid" color="#713D6E" height={100} width={100} /></div> :
       <form onSubmit={onSubmit}>
         {questions.map((data, idx) =>(
           <div className='question__Container' key={data.question}>
-            <h3 tabIndex='0'>Question {idx +1 }:</h3>
-            <h3 tabIndex='0'>{he.decode(data.question)}</h3>
-            <ul >
+            <div tabIndex='0'>
+              <h3>Question {idx +1 }:</h3>
+              <h3>{he.decode(data.question)}</h3>
+            </div>
+            <ul>
             {answers.map((x, i) =>(
               (idx === i) ?
-              x.map((list) =>(
-                <li>
+              x.map((list, index) =>(
+                <li key={index}>
                 <input 
                 type='radio' 
                 name={idx} 
                 onChange={onChange}
                 value={list}
+                aria-label={he.decode(list)}
                 />
                 <label>{he.decode(list)}</label>
                 </li>

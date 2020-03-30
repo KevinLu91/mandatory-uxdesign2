@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import AriaModal from 'react-aria-modal'
-import { Link } from 'react-router-dom';
 
 import Header from "./Header";
 import RenderForm from "./RenderForm"
@@ -51,7 +49,6 @@ function Quiz(){
     axios.get('https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple')
       .then((res) => {
         setQuestions(res.data.results);
-        console.log(res.data.results)
       })
       .catch((error) => {
         console.log(error);

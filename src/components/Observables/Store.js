@@ -9,9 +9,7 @@ if(!results$.value){
 export function updateResults(newResults) {
   if(newResults){
     localStorage.setItem('results', JSON.stringify(newResults));
-  } else{
-    localStorage.removeItem('results')
-  }
+  } 
   results$.next(newResults);
 }
 

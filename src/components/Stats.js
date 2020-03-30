@@ -14,17 +14,11 @@ const Container = styled.div`
 `
 function Stats() {
 
-  
-   
-  console.log(percentage(results$.value))
-
-
-
   return(
     <>
       <Header />
       <Container>
-        <div className='stateContainer'>
+        <div tabIndex='0' role='textbox' className='stateContainer'>
           <h3>GAMES PLAYED</h3>
           <p>{results$.value.gamesPlayed}</p>
           <h3>CORRECT ANSWERS</h3>

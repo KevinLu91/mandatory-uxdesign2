@@ -42,7 +42,7 @@ const Container = styled.div`
 `
 
 function DialogModal({countScore, dialog, setDialog, setQuestions}) {
-
+  
   function updateQuestions(setQuestions){
     axios.get('https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple')
       .then((res) => {
@@ -61,8 +61,16 @@ function DialogModal({countScore, dialog, setDialog, setQuestions}) {
     newResults.correctAnswers += countScore;
     newResults.incorrectAnswers += 10-countScore;
     updateResults(newResults);
+  }
+
+  function handleRestart() {
+    setDialog(!dialog);
+    let newResults = {...results$.value};
+    newResults.gamesPlayed ++;
+    newResults.correctAnswers += countScore;
+    newResults.incorrectAnswers += 10-countScore;
+    updateResults(newResults);
     updateQuestions(setQuestions);
-    console.log(results$.value);
   }
 
   const modal = dialog ? (
@@ -71,13 +79,13 @@ function DialogModal({countScore, dialog, setDialog, setQuestions}) {
       initialFocus = '#focus'
       underlayStyle={{paddingTop: '5rem'}}
     >
-      <Container>
-        <div className='dialog'>
-          <h3>Congratualtions!</h3>
+      <Container >
+        <div tabIndex='0' id='focus' role='textbox' className='dialog'>
+          <h3>Congratulations!</h3>
           <p>You answered {countScore}/10 questions correct!</p>
           <div className='dialog_button_container'>
-          <Link to="/quiz"><button className='dialogBtn dialogBtn--restart' id='focus' onClick={handleCloseModal}>RE-START</button></Link>
-          <Link to="/"><button className='dialogBtn dialogBtn--close' id='focus' onClick={handleCloseModal}>CLOSE</button></Link>
+          <Link to="/quiz" tabIndex='-1'><button className='dialogBtn dialogBtn--restart' id='focus' onClick={handleRestart}>RE-START</button></Link>
+          <Link to="/" tabIndex='-1'><button className='dialogBtn dialogBtn--close' id='focus' onClick={handleCloseModal}>CLOSE</button></Link>
           </div>
         </div>
       </Container>

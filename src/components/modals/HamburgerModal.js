@@ -43,26 +43,20 @@ const Container = styled.aside`
     color: white;
   }
 
-  ul{
-    list-style-type: none;
-  }
-
-  a{
-    text-decoration: none;
-    color: black;
-
-    :visited{
-      text-decoration: none;
-    }
-  
+  .Nav__button__container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 
 
-  li{
+  button{
     margin: 15px;
     padding: 20px;
     width: 50%;
     height: 50%;
+    border: none;
     transition: all 0.4s linear;
 
     :hover{
@@ -90,13 +84,8 @@ const Container = styled.aside`
     margin-left: -10000px;
 `
 
-function HamburgerModal({sidebarOpen , onHandleSidebarModal}) {
-  let className = 'SideBar';
+function HamburgerModal({sidebarOpen, onHandleSidebarModal}) {
   let path = window.location.pathname;
-
-  if(!sidebarOpen){
-    className += ' Sidebar--closed';
-  }
 
   const modal = sidebarOpen ? (
     <AriaModal
@@ -112,13 +101,13 @@ function HamburgerModal({sidebarOpen , onHandleSidebarModal}) {
             <p>Become the master of quizzes</p>
             </div>
           </div>
-          <ul>
+          <div className='Nav__button__container'>
             {path === '/quiz' ? 
-            <Link to='/quiz'><li onClick={onHandleSidebarModal}>Game Screen</li></Link>:
-            <Link to='/'><li onClick={onHandleSidebarModal}>Game Screen</li></Link>}
-            <Link to='/stats'><li onClick={onHandleSidebarModal}>Stats</li></Link>
-            <Link to='/about'><li onClick={onHandleSidebarModal}>About this app</li></Link>
-            </ul>
+            <Link to='/quiz' tabIndex='-1'><button onClick={onHandleSidebarModal}>Game Screen</button></Link>:
+            <Link to='/' tabIndex='-1'><button onClick={onHandleSidebarModal}>Game Screen</button></Link>}
+            <Link to='/stats' tabIndex='-1'><button onClick={onHandleSidebarModal}>Stats</button></Link>
+            <Link to='/about' tabIndex='-1'><button onClick={onHandleSidebarModal}>About this app</button></Link>
+            </div>
           <label className='SideBar__mask' onClick={onHandleSidebarModal}>
           <button aria-label='Close menu' className='SideBar__mask-button' />
           </label>

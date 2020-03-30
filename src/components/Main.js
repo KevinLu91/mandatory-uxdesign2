@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ function Main(){
       <Header />
       <Container>
         <h2>Trivia</h2>
-        <Link to='quiz'><button>Start Quiz!</button></Link>
+        <Link tabIndex='-1' to='quiz'><button>Start Quiz!</button></Link>
       </Container>
     </>
   )

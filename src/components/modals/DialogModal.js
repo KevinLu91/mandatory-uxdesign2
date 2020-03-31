@@ -37,6 +37,11 @@ const Container = styled.div`
     padding-left: 16px;
     padding-right: 16px;
     cursor: pointer;
+    fontsize: 14px;
+
+    :focus{
+      outline: #90bafe solid 3px;
+    }
   }
   
 `
@@ -75,17 +80,19 @@ function DialogModal({countScore, dialog, setDialog, setQuestions}) {
 
   const modal = dialog ? (
     <AriaModal
+      tabIndex='-1'
       titleText='Result dialog'
-      initialFocus = '#focus'
+      initialFocus ='#focus'
+      OnExit={handleCloseModal}
       underlayStyle={{paddingTop: '5rem'}}
     >
-      <Container >
+      <Container>
         <div tabIndex='0' id='focus' role='textbox' className='dialog'>
           <h3>Congratulations!</h3>
           <p>You answered {countScore}/10 questions correct!</p>
           <div className='dialog_button_container'>
-          <Link to="/quiz" tabIndex='-1'><button className='dialogBtn dialogBtn--restart' id='focus' onClick={handleRestart}>RE-START</button></Link>
-          <Link to="/" tabIndex='-1'><button className='dialogBtn dialogBtn--close' id='focus' onClick={handleCloseModal}>CLOSE</button></Link>
+          <Link to="/quiz" tabIndex='-1'><button className='dialogBtn dialogBtn--restart' onClick={handleRestart}>New Game</button></Link>
+          <Link to="/" tabIndex='-1'><button className='dialogBtn dialogBtn--close' onClick={handleCloseModal}>CLOSE</button></Link>
           </div>
         </div>
       </Container>

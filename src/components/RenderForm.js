@@ -14,6 +14,10 @@ const Container = styled.div`
     align-items: center;
   }
 
+  ul{
+    list-style-type: none;
+  }
+
   button{
     cursor: pointer;
     border: none;
@@ -22,10 +26,14 @@ const Container = styled.div`
     border-radius: 4px;
     background-color: #713D6E;
     color: #ffffff;
-    outline-color: red;
     padding-left: 16px;
     padding-right: 16px;
     margin: 15px;
+    fontsize: 14px;
+
+    :focus{
+      outline: #90bafe solid 3px; 
+    }
   }
 `
 function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
@@ -91,8 +99,9 @@ function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
                 onChange={onChange}
                 value={list}
                 aria-label={he.decode(list)}
+                id={he.decode(list)}
                 />
-                <label>{he.decode(list)}</label>
+                <label htmlFor={he.decode(list)}>{he.decode(list)}</label>
                 </li>
               )) 
               : null
@@ -100,7 +109,7 @@ function RenderForm({questions, dialog, setDialog, countScore, setCountScore}) {
             </ul>
           </div>
         ))}
-        <button type='submit'>Submit</button>  
+        <button aria-label='Submit quiz' type='submit'>Submit</button>  
        </form>
       }
     </Container>

@@ -51,7 +51,7 @@ function Header() {
       <div className='titleContainer'>
         <h1>{handleTitle(title, path)}</h1>
       </div>
-      {sidebarOpen ? <HamburgerModal sidebarOpen={sidebarOpen} onHandleSidebarModal={handleSidebarModal}/>: null}
+      <HamburgerModal sidebarOpen={sidebarOpen} onHandleSidebarModal={handleSidebarModal}/>
     </Container>
   )
 }

@@ -47,19 +47,29 @@ const Container = styled.aside`
     width: 100%;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
   }
 
+  a{
+    margin-top 25px;
+    width: 75%;
+    height: 75%;
+  }
 
   button{
-    margin: 15px;
-    padding: 20px;
-    width: 50%;
-    height: 50%;
+    padding: 25px;
+    width: 100%;
+    height: 100%;
     border: none;
-    transition: all 0.4s linear;
+    transition: all 0.2s linear;
+    cursor: pointer;
 
     :hover{
+      color: #ffffff;
+      background: #713D6E;
+    }
+
+    :focus{
       color: #ffffff;
       background: #713D6E;
     }
@@ -94,7 +104,7 @@ function HamburgerModal({sidebarOpen, onHandleSidebarModal}) {
       onExit={onHandleSidebarModal}
       underlayStyle={{paddingTop: '5rem'}}
     >
-      <Container>
+      <Container tabIndex='0' role='navigation'>
           <div className='Nav'>
             <div className='Nav__header'>
             <h3>Quiz Master</h3>
@@ -103,10 +113,10 @@ function HamburgerModal({sidebarOpen, onHandleSidebarModal}) {
           </div>
           <div className='Nav__button__container'>
             {path === '/quiz' ? 
-            <Link to='/quiz' tabIndex='-1'><button onClick={onHandleSidebarModal}>Game Screen</button></Link>:
-            <Link to='/' tabIndex='-1'><button onClick={onHandleSidebarModal}>Game Screen</button></Link>}
-            <Link to='/stats' tabIndex='-1'><button onClick={onHandleSidebarModal}>Stats</button></Link>
-            <Link to='/about' tabIndex='-1'><button onClick={onHandleSidebarModal}>About this app</button></Link>
+            <Link to='/quiz' tabIndex='-1'><button aria-label='open game screen ' onClick={onHandleSidebarModal}>Game Screen</button></Link>:
+            <Link to='/' tabIndex='-1'><button aria-label='open game screen' onClick={onHandleSidebarModal}>Game Screen</button></Link>}
+            <Link to='/stats' tabIndex='-1'><button aria-label='open stats' onClick={onHandleSidebarModal}>Stats</button></Link>
+            <Link to='/about' tabIndex='-1'><button aria-label='open about this app' onClick={onHandleSidebarModal}>About this app</button></Link>
             </div>
           <label className='SideBar__mask' onClick={onHandleSidebarModal}>
           <button aria-label='Close menu' className='SideBar__mask-button' />

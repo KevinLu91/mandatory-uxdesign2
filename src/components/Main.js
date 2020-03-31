@@ -19,9 +19,13 @@ const Container = styled.main`
     border-radius: 4px;
     background-color: #713D6E;
     color: #ffffff;
-    outline-color: red;
     padding-left: 16px;
     padding-right: 16px;
+    font-size: 14px;
+
+    :focus{
+      outline: #90bafe solid 3px; 
+    }
   }
 `
 

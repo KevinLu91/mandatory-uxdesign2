@@ -18,6 +18,7 @@ function About() {
       <Header />
       <Container>
         <div role='textbox' tabIndex='0' className='aboutContainer'>
+          <h3>About this App</h3>
           <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 

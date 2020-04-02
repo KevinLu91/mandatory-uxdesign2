@@ -19,6 +19,7 @@ function Stats() {
       <Header />
       <Container>
         <div tabIndex='0' role='textbox' className='stateContainer'>
+          <h1>Game Stats</h1>
           <h3>GAMES PLAYED</h3>
           <p>{results$.value.gamesPlayed}</p>
           <h3>CORRECT ANSWERS</h3>

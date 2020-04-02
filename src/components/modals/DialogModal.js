@@ -87,7 +87,7 @@ function DialogModal({countScore, dialog, setDialog, setQuestions}) {
       underlayStyle={{paddingTop: '5rem'}}
     >
       <Container>
-        <div tabIndex='0' id='focus' role='textbox' className='dialog'>
+        <div tabIndex='0' id='focus' role='dialog' className='dialog'>
           <h3>Congratulations!</h3>
           <p>You answered {countScore}/10 questions correct!</p>
           <div className='dialog_button_container'>

@@ -9,7 +9,9 @@ if(!results$.value){
 export function updateResults(newResults) {
   if(newResults){
     localStorage.setItem('results', JSON.stringify(newResults));
-  } 
-  results$.next(newResults);
-}
+  }  else {
+    localStorage.removeItem("token");
+  }
+    results$.next(newResults);
+  }
 
